@@ -18,8 +18,8 @@ const Section = () => {
     try {
       const response = await fetch("http://localhost:3000/db.json");
       const jsonData = await response.json();
-      const newSection = jsonData.data.sections.map((s) => {
-        return { ...s, hide: true };
+      const newSection = jsonData.data.sections.map((s,i) => {
+        return i === 0 ? { ...s, hide: false } : { ...s, hide: true };
       });
       setData({ ...jsonData.data, sections: newSection });
       calculateInitialTotals(jsonData.data);
